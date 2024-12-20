@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Book Ark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="allpage">
+        <div class="form-box">
+
+            <div class="button-box">
+                <div id="button-color"></div>
+                <button type="button" class="toggle-btn" onclick="signup()">Sign Up</button>
+                <button type="button" class="toggle-btn" onclick="login()">Log In</button> 
+            </div>
+
+            <!-- Login Form -->
+            <form id="login" class="input-group" method="post" action="/login">
+                <input type="text" class="input-field" placeholder="Email" name="email" required>
+                <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup" class="input-group" method="post" action="/signup">
+                <input type="text" class="input-field" placeholder="First Name" name="first_name" required>
+                <input type="email" class="input-field" placeholder="Email" name="email" required>
+                <input type="password" class="input-field" placeholder="Password" name="password" required>
+                <input type="password" class="input-field" placeholder="Confirm Password" name="confirm_password" required>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("signup");
+        var y = document.getElementById("login");
+        var z = document.getElementById("button-color");
+
+        function login() {
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        }
+
+        function signup() {
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0px";
+        }
+    </script>
+</body>
+</html>
