@@ -29,7 +29,7 @@ def login():
         if conn:
             cursor = conn.cursor()
             cursor.execute(
-                "SELECT * FROM users WHERE email = %s AND password = %s",
+                "SELECT * FROM user WHERE email = %s AND password = %s",
                 (email, password),
             )
             user = cursor.fetchone()
@@ -46,6 +46,7 @@ def login():
 def signup():
     if request.method == "POST":
         first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
         email = request.form.get("email")
         password = request.form.get("password")
         confirm_password = request.form.get("confirm_password")
@@ -59,8 +60,8 @@ def signup():
             cursor = conn.cursor()
             try:
                 cursor.execute(
-                    "INSERT INTO users (first_name, email, password) VALUES (%s, %s, %s)",
-                    (first_name, email, password),
+                    "INSERT INTO user (first_name, last_name, email, password) VALUES (%s, %s, %s,%s)",
+                    (first_name, last_name, email, password),
                 )
                 conn.commit()
                 conn.close()

@@ -21,16 +21,16 @@
       }
       .form-box {
         background: #fff;
-        padding: 30px;
+        padding: 100px 30px; /* Add padding inside the box */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         width: 100%;
-        max-width: 400px;
+        max-width: 400px; /* Keep max width */
         text-align: center;
+        margin: 0 auto; /* Center horizontally */
+        overflow: visible; /* Ensure no content is hidden */
       }
-      h2 {
-        margin-bottom: 20px;
-      }
+
       .form-group {
         margin-bottom: 15px;
         text-align: left;
@@ -49,7 +49,7 @@
       }
       .submit-btn {
         width: 100%;
-        padding: 10px;
+        padding: 15px; /* Make the button larger */
         background-color: #007bff;
         color: white;
         border: none;
@@ -61,7 +61,7 @@
         background-color: #0056b3;
       }
       .text-center {
-        margin-top: 15px;
+        margin-top: 20px;
       }
       .text-center a {
         color: #007bff;
@@ -84,6 +84,17 @@
             class="input-field"
             name="first_name"
             placeholder="Enter your first name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name:</label>
+          <input
+            type="text"
+            id="last_name"
+            class="input-field"
+            name="last_name"
+            placeholder="Enter your last name"
             required
           />
         </div>
