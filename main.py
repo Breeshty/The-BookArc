@@ -28,18 +28,34 @@ def login():
         conn = get_db_connection()
         if conn:
             cursor = conn.cursor()
+
+            # Check in the user table
             cursor.execute(
                 "SELECT * FROM user WHERE email = %s AND password = %s",
                 (email, password),
             )
             user = cursor.fetchone()
+
+            # Check in the admin table
+            cursor.execute(
+                "SELECT * FROM Admin WHERE email = %s AND password = %s",
+                (email, password),
+            )
+            admin = cursor.fetchone()
+
             conn.close()
+
+            # Redirect based on match
             if user:
                 return redirect("/catalog")
+            elif admin:
+                return redirect("/admindashboard")
             else:
                 flash("Wrong email/password", "error")
-                return redirect("/")  # Redirect back to the same login page
+                return redirect("/")  # Redirect back to the login page
+
     return render_template("login.html")
+
 
 # Signup Page
 @app.route("/signup", methods=["GET", "POST"])
@@ -79,6 +95,10 @@ def signup():
 @app.route("/catalog")
 def catalog():
     return "Welcome to the catalog!"
+
+@app.route("/admindashboard")
+def admin_dashboard():
+    return "Welcome to the Admin Dashboard!"
 
 if __name__ == "__main__":
     app.run(debug=True)
