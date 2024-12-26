@@ -92,10 +92,27 @@ def signup():
     return render_template("signup.html")
 
 # Catalog Page
-@app.route("/catalog")
+@app.route("/catalog", methods=["GET"])
 def catalog():
-    return "Welcome to the catalog!"
+    conn = get_db_connection()
+    if not conn:
+        flash("Database connection failed", "error")
+        return "Error connecting to the database."
 
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT * FROM Books")
+        book_list = cursor.fetchall()
+    except mariadb.Error as e:
+        flash(f"Database query failed: {e}", "error")
+        return "Error querying the database."
+    finally:
+        cursor.close()
+        conn.close()
+    print(book_list)
+    return render_template('catalog.html', books=book_list)
+
+#Admin Dashboard page
 @app.route("/admindashboard")
 def admin_dashboard():
     return "Welcome to the Admin Dashboard!"
