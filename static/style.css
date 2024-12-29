@@ -85,6 +85,32 @@
     left: 50px;
 }
 
+/* General Reset */
+body {
+    margin: 0;
+    font-family: 'Fredoka', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Section */
+header {
+    background-color: #007bff;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+
 /* Books Section */
 .books {
     padding: 2rem;
@@ -198,3 +224,172 @@ header h1 a {
 .books_table tr:hover {
     background-color: #f1f1f1;
 }
+.btn {
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+}
+
+.update-btn {
+    background-color: #4CAF50; /* Green */
+}
+
+.update-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn {
+    background-color: #f44336; /* Red */
+}
+
+.delete-btn:hover {
+    background-color: #e53935;
+}
+
+/* ######    Add student ############ */
+/* Add Book Button */
+.add-book-container {
+    text-align: right;
+    margin: 10px 0;
+}
+
+.add-book-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-book-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 8px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.save-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.save-btn:hover {
+    background-color: #218838;
+}
+
+/* ############ */
+
+.add-book-container {
+    text-align: right;
+    margin: 10px 0;
+}
+
+.add-book-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add-book-btn:hover {
+    background-color: #0056b3;
+}
+
+.add-book-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.add-book-form input,
+.add-book-form select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.save-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #218838;
+}
+
+.delete-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;

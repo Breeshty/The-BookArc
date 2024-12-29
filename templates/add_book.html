@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Add a New Book</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav_logo">
+          <h1><a href="/">The Book Arc</a></h1>
+        </div>
+        <div class="nav_logo">
+          <h1><a href="/admindashboard">Admin Dashboard</a></h1>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="add-book-section">
+        <h1>Add a New Book</h1>
+        <br />
+        <form action="/add_book" method="POST" class="add-book-form">
+          <label for="isbn">ISBN:</label>
+          <input type="text" id="isbn" name="isbn" required />
+
+          <label for="book_name">Book Name:</label>
+          <input type="text" id="book_name" name="book_name" required />
+
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" required />
+
+          <label for="availability">Availability:</label>
+          <select id="availability" name="availability" required>
+            <option value="1">Available</option>
+            <option value="0">Not Available</option>
+          </select>
+
+          <label for="rating">Rating:</label>
+          <input
+            type="number"
+            id="rating"
+            name="rating"
+            step="0.1"
+            min="0"
+            max="5"
+            required
+          />
+
+          <button type="submit" class="btn save-btn">Add Book</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

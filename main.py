@@ -83,10 +83,10 @@ def signup():
                 conn.close()
                 return redirect("/catalog")
             except mariadb.IntegrityError:
-                flash("Email already exists")
+                print("Email already exists")
                 return redirect("/signup")
             except Exception as e:
-                flash(f"An error occurred: {e}")
+                print(f"An error occurred: {e}")
                 return redirect("/signup")
     
     return render_template("signup.html")
@@ -113,9 +113,84 @@ def catalog():
     return render_template('catalog.html', books=book_list)
 
 #Admin Dashboard page
-@app.route("/admindashboard")
+@app.route("/admindashboard",methods=["GET","POST"])
 def admin_dashboard():
-    return "Welcome to the Admin Dashboard!"
+    conn = get_db_connection()
+    if not conn:
+        flash("Database connection failed", "error")
+        return "Error connecting to the database."
+
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT B.ISBN, B.Book_Name, B.Author, B.Availability, B.Rating, U.First_Name FROM Books B LEFT JOIN LEND L ON B.ISBN = L.ISBN LEFT JOIN User U ON L.User_Id = U.User_Id ORDER BY B.Book_Name")
+        book_list = cursor.fetchall()
+    except mariadb.Error as e:
+        flash(f"Database query failed: {e}", "error")
+        return "Error querying the database."
+    finally:
+        cursor.close()
+        conn.close()
+        
+    return render_template('admindashboard.html', books=book_list)
+
+@app.route('/add_book', methods=['GET'])
+def add_book_form():
+    return render_template('add_book.html')
+
+
+@app.route('/add_book', methods=['POST'])
+def add_book():
+    # Get form data
+    isbn = request.form['isbn']
+    book_name = request.form['book_name']
+    author = request.form['author']
+    availability = int(request.form['availability'])
+    rating = float(request.form['rating'])
+
+    conn = get_db_connection()
+    if conn:
+        cursor = conn.cursor()
+        try:
+            # Insert the new book into the database
+            cursor.execute(
+                "INSERT INTO Books (ISBN, Book_Name, Author, Availability, Rating) VALUES (%s, %s, %s, %s, %s)",
+                (isbn, book_name, author, availability, rating),
+            )
+            conn.commit()
+            flash('Book added successfully!', 'success')
+        except Exception as e:
+            flash(f'Error adding book: {e}', 'error')
+        finally:
+            cursor.close()
+            conn.close()
+    else:
+        flash('Failed to connect to the database', 'error')
+
+    return redirect('/admindashboard')   
+
+
+@app.route('/delete_book', methods=['POST'])
+def delete_book():
+    isbn = request.form['isbn']
+
+    conn = get_db_connection()
+    if conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DELETE FROM Books WHERE ISBN = %s", (isbn,))
+            conn.commit()
+            print('Book deleted successfully!', 'success')
+        except Exception as e:
+            flash(f'Error deleting book: {e}', 'error')
+        finally:
+            cursor.close()
+            conn.close(
+)
+    else:
+        flash('Failed to connect to the database', 'error')
+
+    # Redirect back to the catalog page
+    return redirect('/admindashboard')
 
 if __name__ == "__main__":
     app.run(debug=True)
