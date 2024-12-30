@@ -250,11 +250,35 @@ header h1 a {
     background-color: #e53935;
 }
 
-/* ######    Add student ############ */
-/* Add Book Button */
+/* Container for Action Buttons */
+.action-buttons-container {
+    display: flex;
+    justify-content: space-between; /* Ensures buttons are spaced out */
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Lend Book Button */
+.lend-book-container {
+    text-align: left;
+}
+
+.lend-book-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.lend-book-btn:hover {
+    background-color:  #007bff; /* Blue */
+}
+/* Add Book Button (No changes to existing styles) */
 .add-book-container {
     text-align: right;
-    margin: 10px 0;
 }
 
 .add-book-btn {
@@ -270,6 +294,7 @@ header h1 a {
 .add-book-btn:hover {
     background-color: #0056b3;
 }
+
 
 /* Modal Styling */
 .modal {
@@ -321,36 +346,35 @@ header h1 a {
     background-color: #218838;
 }
 
-/* ############ */
-
-.add-book-container {
-    text-align: right;
-    margin: 10px 0;
-}
-
-.add-book-btn {
-    background-color: #007bff; /* Blue */
-    color: white;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.add-book-btn:hover {
-    background-color: #0056b3;
-}
 
 .add-book-section {
-    margin: 20px;
-    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Full viewport height */
     background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
+.add-book-form {
+    width: 100%;
+    max-width: 600px; /* Limits the maximum width of the form */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    position: relative; /* Keeps elements contained */
+    overflow: hidden;
+}
+.add-book-form header {
+    text-align: center; /* Centers the header text */
+    font-size: 1.8rem; /* Makes the header text slightly larger */
+    font-weight: bold; /* Ensures the text is bold */
+    color: #333; /* Dark gray for better readability */
+    margin: 0 0 20px; /* Adds space below the header */
+    padding: 0;
+}
 .add-book-form label {
     display: block;
     margin-bottom: 8px;
@@ -393,3 +417,65 @@ header h1 a {
 
 .delete-btn:hover {
     background-color: #c82333;
+}
+
+/* Lend Book Section */
+.lend-book-section {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #f9f9f9;
+}
+
+/* Lend Book Form */
+.lend-book-form {
+    width: 100%;
+    max-width: 500px; /* Limits the maximum width of the form */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Form Header */
+.lend-book-form header {
+    text-align: center; /* Centers the header text */
+    font-size: 1.8rem; /* Makes the header text slightly larger */
+    font-weight: bold; /* Ensures the text is bold */
+    color: white; /* Dark gray for better readability */
+    margin-bottom: 20px; /* Adds space below the header */
+}
+
+/* Input Fields */
+.lend-book-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.lend-book-form input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}

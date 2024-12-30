@@ -192,5 +192,68 @@ def delete_book():
     # Redirect back to the catalog page
     return redirect('/admindashboard')
 
+@app.route('/lend_book', methods=['GET'])
+def lend_book_form():
+    return render_template('lend_book.html')
+
+@app.route('/lend_book', methods=['POST'])
+def lend_book():
+    user_email = request.form.get('user_email')  # Use .get() to avoid KeyError
+    admin_email = request.form.get('admin_email')
+    isbn = request.form.get('isbn')
+    lend_date = request.form.get('lend_date')
+
+    if not user_email or not admin_email or not isbn or not lend_date:
+        flash("All fields are required", "error")
+        return redirect('/admindashboard')
+
+    conn = get_db_connection()
+    if not conn:
+        flash('Database connection failed', 'error')
+        return redirect('/')
+
+    cursor = conn.cursor()
+
+    try:
+        
+        cursor.execute("""SELECT l.ISBN  FROM Lend l JOIN User u ON l.User_Id = u.User_Id WHERE l.ISBN = %s AND u.Email != %s""", (isbn, user_email))
+
+        conflict_lend = cursor.fetchone()
+
+        if conflict_lend:  # If a conflict is found
+             flash('This book is already lent to another user. Cannot lend.', 'error')
+             return redirect('/admindashboard')
+        # Check if the user already has the book in Lend table
+        cursor.execute("SELECT * FROM Lend WHERE User_Id = (SELECT User_Id FROM User WHERE Email = %s) AND ISBN = %s", (user_email, isbn))
+        existing_lend = cursor.fetchone()
+
+        if existing_lend:  # If exists, delete the previous record
+            cursor.execute("DELETE FROM Lend WHERE User_Id = (SELECT User_Id FROM User WHERE Email = %s) AND ISBN = %s", (user_email, isbn))
+            cursor.execute("UPDATE Books SET Availability = 1 WHERE ISBN = %s", (isbn,))
+            conn.commit()
+            flash('Previous lending record deleted. Book lent again.', 'success')
+        else:  # If no record exists, insert a new row
+            cursor.execute("SELECT User_Id FROM User WHERE Email = %s", (user_email,))
+            user_id = cursor.fetchone()
+            if user_id:
+                cursor.execute(
+                    "INSERT INTO Lend (User_Id, Admin_Email, ISBN, Lend_Date) VALUES (%s, %s, %s, %s)",
+                    (user_id[0], admin_email, isbn, lend_date)
+                )
+                cursor.execute("UPDATE Books SET Availability = 0 WHERE ISBN = %s", (isbn,))
+                conn.commit()
+                flash('Book lent successfully.', 'success')
+            else:
+                flash('User not found.', 'error')
+
+    except mariadb.Error as e:
+        flash(f'Error during book lending process: {e}', 'error')
+    finally:
+        cursor.close()
+        conn.close()
+
+    return redirect('/admindashboard')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
