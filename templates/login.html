@@ -3,106 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login to Book Ark</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      .form-box {
-        background: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-      }
-      h2 {
-        margin-bottom: 20px;
-      }
-      .form-group {
-        margin-bottom: 15px;
-        text-align: left;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-      }
-      .input-field {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-      }
-      .submit-btn {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      .submit-btn:hover {
-        background-color: #0056b3;
-      }
-      .text-center {
-        margin-top: 15px;
-      }
-      .text-center a {
-        color: #007bff;
-        text-decoration: none;
-      }
-      .text-center a:hover {
-        text-decoration: underline;
-      }
-    </style>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <div class="form-box">
-      <h2>Log In</h2>
-      <form method="post" action="/">
-        <div class="form-group">
+    <header>
+      <h1>The Book Arc</h1>
+    </header>
+    <main>
+      <section class="login-section">
+        <form method="POST" action="/" class="login-form">
+          <header>Login</header>
           <label for="email">Email:</label>
           <input
             type="email"
             id="email"
-            class="input-field"
             name="email"
             placeholder="Enter your email"
             required
           />
-        </div>
-        <div class="form-group">
+
           <label for="password">Password:</label>
           <input
             type="password"
             id="password"
-            class="input-field"
             name="password"
             placeholder="Enter your password"
             required
           />
-        </div>
-        <button type="submit" class="submit-btn">Log In</button>
-      </form>
-      <p class="text-center">
-        Don't have an account? <a href="/signup">Sign Up</a>
-      </p>
-    </div>
+
+          <button type="submit" class="login-btn">Login</button>
+          <p class="text-center">
+            Don't have an account? <a href="/signup">Sign Up</a>
+          </p>
+        </form>
+      </section>
+    </main>
   </body>
 </html>

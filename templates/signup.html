@@ -3,80 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up for Book Ark</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      .form-box {
-        background: #fff;
-        padding: 100px 30px; /* Add padding inside the box */
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        width: 100%;
-        max-width: 400px; /* Keep max width */
-        text-align: center;
-        margin: 0 auto; /* Center horizontally */
-        overflow: visible; /* Ensure no content is hidden */
-      }
-
-      .form-group {
-        margin-bottom: 15px;
-        text-align: left;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-      }
-      .input-field {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-      }
-      .submit-btn {
-        width: 100%;
-        padding: 15px; /* Make the button larger */
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      .submit-btn:hover {
-        background-color: #0056b3;
-      }
-      .text-center {
-        margin-top: 20px;
-      }
-      .text-center a {
-        color: #007bff;
-        text-decoration: none;
-      }
-      .text-center a:hover {
-        text-decoration: underline;
-      }
-    </style>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <div class="form-box">
-      <h2>Sign Up</h2>
-      <form method="post" action="/signup">
-        <div class="form-group">
+    <header>
+      <h1>The Book Arc</h1>
+    </header>
+    <main>
+      <section class="login-section">
+        <form method="POST" action="/signup" class="login-form">
+          <header>Sign Up</header>
           <label for="first_name">First Name:</label>
           <input
             type="text"
@@ -86,8 +22,7 @@
             placeholder="Enter your first name"
             required
           />
-        </div>
-        <div class="form-group">
+
           <label for="last_name">Last Name:</label>
           <input
             type="text"
@@ -97,8 +32,7 @@
             placeholder="Enter your last name"
             required
           />
-        </div>
-        <div class="form-group">
+
           <label for="email">Email:</label>
           <input
             type="email"
@@ -108,8 +42,7 @@
             placeholder="Enter your email"
             required
           />
-        </div>
-        <div class="form-group">
+
           <label for="password">Password:</label>
           <input
             type="password"
@@ -119,8 +52,7 @@
             placeholder="Enter your password"
             required
           />
-        </div>
-        <div class="form-group">
+
           <label for="confirm_password">Confirm Password:</label>
           <input
             type="password"
@@ -130,10 +62,13 @@
             placeholder="Confirm your password"
             required
           />
-        </div>
-        <button type="submit" class="submit-btn">Sign Up</button>
-      </form>
-      <p class="text-center">Already have an account? <a href="/">Log In</a></p>
-    </div>
+
+          <button type="submit" class="submit-btn">Sign Up</button>
+          <p class="text-center">
+            Already have an account? <a href="/">Log In</a>
+          </p>
+        </form>
+      </section>
+    </main>
   </body>
 </html>
