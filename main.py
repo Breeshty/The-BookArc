@@ -101,7 +101,7 @@ def catalog():
 
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT * FROM Books")
+        cursor.execute("SELECT * FROM Books ORDER BY Book_Name ASC")
         book_list = cursor.fetchall()
     except mariadb.Error as e:
         flash(f"Database query failed: {e}", "error")
