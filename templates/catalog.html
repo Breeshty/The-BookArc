@@ -22,6 +22,11 @@
     </header>
     <main>
       <section class="books">
+        <div class="action-buttons-container">
+          <div class="lend-book-container">
+            <a href="/search" class="btn lend-book-btn">Search Books</a>
+          </div>
+        </div>  
         <div class="books_box">
           <h1>Books Catalog</h1>
           <table class="books_table">
@@ -29,6 +34,7 @@
               <tr>
                 <th>Book Name</th>
                 <th>Author</th>
+                <th>Genre</th>
                 <th>ISBN</th>
                 <th>Availability</th>
                 <th>Rating</th>
@@ -39,9 +45,10 @@
               <tr>
                 <td>{{ book[1] }}</td>
                 <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
                 <td>{{ book[0] }}</td>
-                <td>{{ "Available" if book[3] == 1 else "Not Available" }}</td>
-                <td>{{ book[4] }}</td>
+                <td>{{ "Available" if book[4] == 1 else "Not Available" }}</td>
+                <td>{{ book[5] }}</td>
               </tr>
               {% endfor %}
             </tbody>
