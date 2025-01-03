@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav_logo">
+        <h1><a href="/">The Book Arc</a></h1>
+      </div>
+    </nav>
+  </header>
+    <div class="allpage">
+        <form action="/search" method="GET">
+            <div class="search">
+                <span class="search-icon material-symbols-outlined">search</span>
+                <input class="search-input" type="search" name="query" placeholder="Search Books">
+                
+                <button type="submit" class="search-bttn">Enter</button>
+            </div>
+        </form>
+        <div class="books_box">
+            <h1>Books Catalog</h1>
+            <table class="books_table">
+              <thead>
+                <tr>
+                  <th>Book Name</th>
+                  <th>Author</th>
+                  <th>Genre</th>
+                  <th>ISBN</th>
+                  <th>Availability</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for book in books %}
+                <tr>
+                  <td>{{ book[1] }}</td>
+                  <td>{{ book[2] }}</td>
+                  <td>{{ book[3] }}</td>
+                  <td>{{ book[0] }}</td>
+                  <td>{{ "Available" if book[4] == 1 else "Not Available" }}</td>
+                  <td>{{ book[5] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+
+    <div class="ct-button">
+        <button class="catalogue-btn"><a href="/catalog" >View Full Catalogue</a></button>
+    </div>
+
+    </div>
+</body>
+</html>
