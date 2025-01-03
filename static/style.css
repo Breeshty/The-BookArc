@@ -1,5 +1,5 @@
  /* General Body Styling */
-body {
+ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -484,4 +484,59 @@ header h1 a {
 
 .submit-btn:hover {
     background-color: linear-gradient(to right, #ff105f, #ffad06);
+}
+
+/* For Search Page */
+.allpage {
+    height: 100%;
+    width: 100%; 
+    background-image: url(https://images.unsplash.com/photo-1621944190272-ec775aad58d0?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWluaW1hbCUyMGJvb2t8ZW58MHx8MHx8fDA%3D);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    justify-content: center;
+}
+.ct-button{
+    margin-top: 40px;
+    margin-left: 65px;
+    justify-self: center;
+}
+.catalogue-btn{
+    width: 350px;
+    top: 40px;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #ff105f, #ffad06);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    
+}
+.search{
+    margin-top: 20px;
+    
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    border-radius: 28px;
+    background: #f6f6f6;
+    width: 35%;
+    justify-self: center;
+}
+.search-input{
+    font-size: 16px;
+    color: #333333;
+    margin-left: 14px;
+    outline: none;
+    border: none;
+    background: transparent;
+    flex: 1;
+}
+.search-bttn{
+    border: none;
+    background: transparent;
+    color: #384B60;
+    cursor: pointer;
 }

@@ -143,6 +143,7 @@ def add_book():
     # Get form data
     isbn = request.form['isbn']
     book_name = request.form['book_name']
+    genre = request.form['genre']
     author = request.form['author']
     availability = int(request.form['availability'])
     rating = float(request.form['rating'])
@@ -153,8 +154,8 @@ def add_book():
         try:
             # Insert the new book into the database
             cursor.execute(
-                "INSERT INTO Books (ISBN, Book_Name, Author, Availability, Rating) VALUES (%s, %s, %s, %s, %s)",
-                (isbn, book_name, author, availability, rating),
+                "INSERT INTO Books (ISBN, Book_Name, Author, Genre, Availability, Rating) VALUES (%s, %s, %s, %s, %s, %s)",
+                (isbn, book_name, author, genre ,availability, rating),
             )
             conn.commit()
             flash('Book added successfully!', 'success')
@@ -166,8 +167,33 @@ def add_book():
     else:
         flash('Failed to connect to the database', 'error')
 
-    return redirect('/admindashboard')   
+    return redirect('/admindashboard')      
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')  # Correctly handle GET requests
+
+    conn = get_db_connection()
+    if not conn:
+        print("Database connection failed")  # Or use flash if configured
+        return "Error connecting to the database."
+
+    cursor = conn.cursor()
+    try:
+        #cursor.execute("SELECT * FROM books WHERE Book_Name LIKE ? ", (query,))
+        #SELECT * FROM books WHERE (Book_Name LIKE ? OR Author LIKE ? OR Genre LIKE ?)
+        cursor.execute("SELECT * FROM books WHERE (Book_Name LIKE ? OR Author LIKE ? OR Genre LIKE ?)", (query,query,query))
+        
+        
+        book_list = cursor.fetchall()
+    except mariadb.Error as e:
+        print(f"Database query failed: {e}")  # Or use flash if configured
+        return "Error querying the database."
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('search.html', books=book_list)
 
 @app.route('/delete_book', methods=['POST'])
 def delete_book():
