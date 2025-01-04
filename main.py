@@ -2,7 +2,7 @@ import mariadb
 from flask import Flask, render_template, request, redirect, flash
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"  # Replace with a secure key
+app.secret_key = "your_secret_key"   
 
 # Database connection function
 def get_db_connection():
@@ -52,7 +52,7 @@ def login():
                 return redirect("/admindashboard")
             else:
                 flash("Wrong email/password", "error")
-                return redirect("/")  # Redirect back to the login page
+                return redirect("/")  
 
     return render_template("login.html")
 
@@ -140,7 +140,7 @@ def add_book_form():
 
 @app.route('/add_book', methods=['POST'])
 def add_book():
-    # Get form data
+   
     isbn = request.form['isbn']
     book_name = request.form['book_name']
     genre = request.form['genre']
@@ -171,23 +171,22 @@ def add_book():
 
 @app.route('/search', methods=['GET'])
 def search():
-    query = request.args.get('query')  # Correctly handle GET requests
+    query = request.args.get('query')   
 
     conn = get_db_connection()
     if not conn:
-        print("Database connection failed")  # Or use flash if configured
+        print("Database connection failed")   
         return "Error connecting to the database."
 
     cursor = conn.cursor()
     try:
-        #cursor.execute("SELECT * FROM books WHERE Book_Name LIKE ? ", (query,))
-        #SELECT * FROM books WHERE (Book_Name LIKE ? OR Author LIKE ? OR Genre LIKE ?)
+         
         cursor.execute("SELECT * FROM books WHERE (Book_Name LIKE ? OR Author LIKE ? OR Genre LIKE ?)", (query,query,query))
         
         
         book_list = cursor.fetchall()
     except mariadb.Error as e:
-        print(f"Database query failed: {e}")  # Or use flash if configured
+        print(f"Database query failed: {e}")  
         return "Error querying the database."
     finally:
         cursor.close()
@@ -224,7 +223,7 @@ def lend_book_form():
 
 @app.route('/lend_book', methods=['POST'])
 def lend_book():
-    user_email = request.form.get('user_email')  # Use .get() to avoid KeyError
+    user_email = request.form.get('user_email')   
     admin_email = request.form.get('admin_email')
     isbn = request.form.get('isbn')
     lend_date = request.form.get('lend_date')
