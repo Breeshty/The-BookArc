@@ -171,11 +171,11 @@ def add_book():
 
 @app.route('/search', methods=['GET'])
 def search():
-    query = request.args.get('query')  # Correctly handle GET requests
+    query = request.args.get('query')  
 
     conn = get_db_connection()
     if not conn:
-        print("Database connection failed")  # Or use flash if configured
+        print("Database connection failed")  
         return "Error connecting to the database."
 
     cursor = conn.cursor()
